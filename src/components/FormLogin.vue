@@ -18,7 +18,7 @@
       </div>
 
       <div slot="form-controls">
-        <button @click="alert('hey!')">submit</button>
+        <button @click.prevent="handleFuck">submit</button>
         <div>
           <h3>Preview Form</h3>
           <ul>
@@ -41,6 +41,11 @@ import FormHelper from '@/components/FormHelper'
         },
         components: {
           FormHelper
+        },
+        methods: {
+          handleFuck() {
+            this.$emit('fuck', 'fuck')
+          }
         }
     }
 </script>

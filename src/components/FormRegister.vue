@@ -12,7 +12,7 @@
       </div>
 
       <div slot="form-controls">
-        <button @click="alert('hey!')">submit</button>
+        <button @click.prevent="handleWow">submit</button>
       </div>
     </form-helper>
   </div>
@@ -24,6 +24,11 @@ import FormHelper from '@/components/FormHelper'
         name: "FormRegister",
         components: {
           FormHelper
+        },
+        methods: {
+          handleWow() {
+            this.$emit("wow", 'wow')
+          }
         }
     }
 </script>

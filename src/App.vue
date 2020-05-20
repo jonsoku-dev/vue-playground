@@ -1,10 +1,10 @@
 <template>
   <div>
-    <keep-alive>
-      <component :is="component"></component>
-    </keep-alive>
     <button @click="component = 'form-register'">show register</button>
     <button @click="component = 'form-login'">show login</button>
+    <keep-alive>
+      <component :is="component" @fuck="handleFuck" @wow="handleWow"></component>
+    </keep-alive>
   </div>
 </template>
 
@@ -25,6 +25,12 @@ export default {
     'form-login' : FormLogin
   },
   methods: {
+    handleFuck(value) {
+      console.log(value, 'fuck!')
+    },
+    handleWow(value) {
+      console.log(value, 'wow!')
+    },
     scroll() {
       window.onscroll = () => {
         let bottomOfWindow = 
