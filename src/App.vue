@@ -39,7 +39,7 @@ export default {
             }
           })
         }else {
-          console.log(bottomOfWindow, 'not bottom')
+          //
         }
       }
     }
