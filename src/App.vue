@@ -31,7 +31,6 @@ export default {
           document.documentElement.scrollTop + 
             window.innerHeight === document.documentElement.offsetHeight;
         if(bottomOfWindow) {
-          console.log(bottomOfWindow, 'bottom')
           this.$nextTick(function() {
             if(this.component === 'form-login'){
               this.component = 'form-register'
