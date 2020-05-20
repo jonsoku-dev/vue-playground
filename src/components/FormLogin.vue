@@ -6,8 +6,12 @@
       </div>
 
       <div slot="form-fields">
-        <input type="text" placeholder="enter your name ..." />
-        <div>
+        <input
+          type="text"
+          v-model="username"
+          placeholder="enter your name ..."
+        />
+        <div id="checkboxes">
           <label>rice</label>
           <input type="checkbox" value="rice" v-model="categories" />
           <label>chicken</label>
@@ -15,15 +19,35 @@
           <label>ramen</label>
           <input type="checkbox" value="ramen" v-model="categories" />
         </div>
+        <div id="selectbox">
+          <select v-model="option">
+            <option v-for="(op, i) in options" :key="i">{{ op }}</option>
+          </select>
+        </div>
       </div>
 
       <div slot="form-controls">
         <button @click.prevent="handleFuck">submit</button>
         <div>
-          <h3>Preview Form</h3>
-          <ul>
-            <ol v-for="(category,index) in categories" :key="index">{{category}}</ol>
-          </ul>
+          <h2>Preview Form</h2>
+          <article>
+            <h3>username</h3>
+            {{ username }}
+          </article>
+          <article>
+            <h3>Categories</h3>
+            <ul>
+              <ol v-for="(category, index) in categories" :key="index">
+                {{
+                  category
+                }}
+              </ol>
+            </ul>
+          </article>
+          <article>
+            <h3>selected option</h3>
+            {{ option }}
+          </article>
         </div>
       </div>
     </form-helper>
@@ -32,23 +56,30 @@
 
 <script>
 import FormHelper from '@/components/FormHelper'
-    export default {
-        name: "FormLogin",
-        data() {
-          return {
-            categories: []
-          } 
-        },
-        components: {
-          FormHelper
-        },
-        methods: {
-          handleFuck() {
-            this.$emit('fuck', 'fuck')
-          }
-        }
+export default {
+  name: 'FormLogin',
+  data() {
+    return {
+      username: '',
+      categories: [],
+      option: '',
+      options: ['lol', 'chaos', 'overwatch'],
     }
+  },
+  components: {
+    FormHelper,
+  },
+  methods: {
+    handleFuck() {
+      const payload = {
+        username: this.username,
+        categories: this.categories,
+        option: this.option,
+      }
+      this.$emit('fuck', payload)
+    },
+  },
+}
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
